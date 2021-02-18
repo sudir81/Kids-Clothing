@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MenuItem from "./../../Components/Menu-item/munu-item";
 import "./directorymenu.scss";
 
-class DirectoryMenu extends React.Component {
+class DirectoryMenu extends Component {
   constructor() {
     super();
 

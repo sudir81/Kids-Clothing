@@ -9,11 +9,12 @@ import SneakersPage from "./Screens/SneakersPage/sneakerspage";
 import GirlsClothingPage from "./Screens/GirlsClothing/girlsclothingpage";
 import BoysClothingPage from "./Screens/BoysClothing/boysclothingpage";
 import ShopPage from "./Screens/ShopPage/shoppage";
+import Header from "./Components/Header/header";
 
 function App() {
   return (
     <div className="App">
-		<h3>Sudheer Papineni</h3>
+      <Header />
       <Switch>
         <Route exact path={"/"} component={HomePage} />
         <Route path={"/hats"} component={HatsPage} />
