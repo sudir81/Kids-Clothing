@@ -1,7 +1,7 @@
 import { CART_VIEW_TOGGLE_HIDDEN } from "../constants";
 
 const initialState = {
-    hidden: true
+    hidden: false
 }
 
 const cartReducer = (state = initialState, action) => {
