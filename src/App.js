@@ -10,6 +10,7 @@ import GirlsClothingPage from "./Screens/GirlsClothing/girlsclothingpage";
 import BoysClothingPage from "./Screens/BoysClothing/boysclothingpage";
 import ShopPage from "./Screens/ShopPage/shoppage";
 import Header from "./Components/Header/header";
+import SignInSignUp from "./Screens/Authentication/signInSignUp";
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
       <Header />
       <Switch>
         <Route exact path={"/"} component={HomePage} />
+        <Route path={"/shop"} component={ShopPage} />
+        <Route path={"/signin"} component={SignInSignUp} />
         <Route path={"/hats"} component={HatsPage} />
         <Route path={"/jackets"} component={JacketsPage} />
         <Route path={"/sneakers"} component={SneakersPage} />
         <Route path={"/girls"} component={GirlsClothingPage} />
         <Route path={"/boys"} component={BoysClothingPage} />
-        <Route path={"/shop"} component={ShopPage} />
       </Switch>
     </div>
   );
