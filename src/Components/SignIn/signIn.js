@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { signInWithGoogel } from '../../firebase/firebase.util'
 import CustomButton from '../Custom-UI/Button/button'
 import FormInput from '../Custom-UI/Form-Input/formInput'
 
@@ -27,7 +28,13 @@ const SignIn = () => {
                 <FormInput type="email" name="email" value={email} label="Email" handleChange={handleChange} required/>
                 <FormInput type="password" name="password" value={password} label="Password" handleChange={handleChange} required/>
 
-                <CustomButton type="submit"> Sign In </CustomButton>
+                <div className="buttons">
+                    <CustomButton type="submit"> Sign In </CustomButton>
+                    <CustomButton onClick={signInWithGoogel} isGoogleSignIn>
+                        {' '}
+                        Sign in with Google{' '}
+                    </CustomButton>
+                </div>
             </form>
         </div>
     )

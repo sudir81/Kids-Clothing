@@ -12,22 +12,47 @@ import ShopPage from "./Screens/ShopPage/shoppage";
 import Header from "./Components/Header/header";
 import SignInSignUp from "./Screens/Authentication/signInSignUp";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path={"/"} component={HomePage} />
-        <Route path={"/shop"} component={ShopPage} />
-        <Route path={"/signin"} component={SignInSignUp} />
-        <Route path={"/hats"} component={HatsPage} />
-        <Route path={"/jackets"} component={JacketsPage} />
-        <Route path={"/sneakers"} component={SneakersPage} />
-        <Route path={"/girls"} component={GirlsClothingPage} />
-        <Route path={"/boys"} component={BoysClothingPage} />
-      </Switch>
-    </div>
-  );
+import { auth } from './firebase/firebase.util'
+
+class App extends React.Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  unsubscribeFromAuth = null
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
+      this.setState({ currentUser : user })
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Header currentUser={this.state.currentUser}/>
+        <Switch>
+          <Route exact path={"/"} component={HomePage} />
+          <Route path={"/shop"} component={ShopPage} />
+          <Route path={"/signin"} component={SignInSignUp} />
+          <Route path={"/hats"} component={HatsPage} />
+          <Route path={"/jackets"} component={JacketsPage} />
+          <Route path={"/sneakers"} component={SneakersPage} />
+          <Route path={"/girls"} component={GirlsClothingPage} />
+          <Route path={"/boys"} component={BoysClothingPage} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
