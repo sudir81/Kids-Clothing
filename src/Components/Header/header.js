@@ -6,8 +6,10 @@ import { ReactComponent as Logo} from '../../assets/images/crown.svg'
 import { auth } from '../../firebase/firebase.util'
 
 import { connect } from 'react-redux'
+import CartIcon from '../Cart-Icon/cart-icon'
+import CartView from '../Cart-Overlay/cartView'
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, cartViewToggle }) => {
     return (
         <div className="header">
             <Link className="logo_container" to="/">
@@ -31,13 +33,18 @@ const Header = ({ currentUser }) => {
                         </Link>
                     )
                 }
+                <CartIcon />
             </div>
+            {
+                cartViewToggle && (<CartView />)
+            }
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
+    currentUser: currentUser,
+    cartViewToggle: hidden
 })
 
 export default connect(mapStateToProps) (Header)
