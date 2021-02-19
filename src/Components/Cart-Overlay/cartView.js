@@ -4,6 +4,7 @@ import CustomButton from '../Custom-UI/Button/button'
 import { connect } from 'react-redux'
 import './cartView.scss'
 import CartItem from '../Cart-Item/cart-item'
+import { selectCartItems } from '../../Redux/Selectors/cart.selectors'
 
 const CartView = ({cartItems}) => {
     return (
@@ -18,8 +19,8 @@ const CartView = ({cartItems}) => {
     )
 }
 
-const mapStateToProps = ({ cart: {cartItems}}) => ({
-    cartItems
+const mapStateToProps = (state) => ({
+    cartItems: selectCartItems(state)
 })
 
 export default connect(mapStateToProps) (CartView)

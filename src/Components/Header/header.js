@@ -15,7 +15,7 @@ const Header = ({ currentUser, cartViewToggle, removeCartItemsOnSignOut }) => {
 
     const signOut = () => {
         auth.signOut();
-        removeCartItemsOnSignOut()
+        // removeCartItemsOnSignOut()
     }
     return (
         <div className="header">
