@@ -6,10 +6,17 @@ import { ReactComponent as Logo} from '../../assets/images/crown.svg'
 import { auth } from '../../firebase/firebase.util'
 
 import { connect } from 'react-redux'
+import { removeCartItemsOnSignOut } from '../../Redux/Actions/cart.action'
+
 import CartIcon from '../Cart-Icon/cart-icon'
 import CartView from '../Cart-Overlay/cartView'
 
-const Header = ({ currentUser, cartViewToggle }) => {
+const Header = ({ currentUser, cartViewToggle, removeCartItemsOnSignOut }) => {
+
+    const signOut = () => {
+        auth.signOut();
+        removeCartItemsOnSignOut()
+    }
     return (
         <div className="header">
             <Link className="logo_container" to="/">
@@ -24,7 +31,7 @@ const Header = ({ currentUser, cartViewToggle }) => {
                 </Link>
                 {
                     currentUser ? (
-                        <div className="option" onClick={() => auth.signOut()}>
+                        <div className="option" onClick={() => signOut()}>
                             SIGN OUT
                         </div>
                     ): (
@@ -47,4 +54,9 @@ const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
     cartViewToggle: hidden
 })
 
-export default connect(mapStateToProps) (Header)
+
+const mapDispatchToProps = dispatch => ({
+    removeCartItemsOnSignOut: () => dispatch(removeCartItemsOnSignOut())
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps) (Header)

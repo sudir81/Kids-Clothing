@@ -1,7 +1,9 @@
-import { CART_VIEW_TOGGLE_HIDDEN } from "../constants";
+import { ADD_CART_ITEM, CART_VIEW_TOGGLE_HIDDEN, REMOVE_CART_ITEMS_ON_SIGNOUT } from "../constants";
+import { addItemToCart } from "../Utils/cart.utils";
 
 const initialState = {
-    hidden: false
+    hidden: false,
+    cartItems: []
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -10,6 +12,16 @@ const cartReducer = (state = initialState, action) => {
             return ({
                 ...state,
                 hidden: !state.hidden
+            })
+        case ADD_CART_ITEM:
+            return ({
+                ...state,
+                cartItems: addItemToCart(state.cartItems, action.payload)
+            })
+        case REMOVE_CART_ITEMS_ON_SIGNOUT:
+            return ({
+                ...state,
+                cartItems: []
             })
         default:
             return state;
