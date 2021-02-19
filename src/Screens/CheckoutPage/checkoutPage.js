@@ -36,6 +36,7 @@ const CheckoutPage = ({ cartItems, total }) => {
                 *Please use the following test credit card for payments
                 <br />
                 VISA - 4242 4242 4242 4242 Exp: 01/25 CVV: 123 
+                <br />
                 MASTER - 5555 5555 5555 4444 Exp: 01/25 CVV: 456
             </div>
             <StripeButton price={total} />
