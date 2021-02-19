@@ -16,6 +16,7 @@ import { auth, createUserProfileDoc } from './firebase/firebase.util'
 
 import { connect } from 'react-redux'
 import { setCurrentUser } from './Redux/Actions/user.action'
+import { selectCartHidden } from "./Redux/Selectors/cart.selectors";
 
 class App extends React.Component {
 
@@ -64,7 +65,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  currentUser: selectCartHidden(state)
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,15 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import './header.scss'
-import { ReactComponent as Logo} from '../../assets/images/crown.svg'
-import { auth } from '../../firebase/firebase.util'
-
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+
+import { auth } from '../../firebase/firebase.util'
 import { removeCartItemsOnSignOut } from '../../Redux/Actions/cart.action'
 
+
+import { ReactComponent as Logo} from '../../assets/images/crown.svg'
 import CartIcon from '../Cart-Icon/cart-icon'
 import CartView from '../Cart-Overlay/cartView'
+import './header.scss'
+import { selectCurrentUser } from '../../Redux/Selectors/user.selector'
+import { selectCartHidden } from '../../Redux/Selectors/cart.selectors'
 
 const Header = ({ currentUser, cartViewToggle, removeCartItemsOnSignOut }) => {
 
@@ -49,9 +52,9 @@ const Header = ({ currentUser, cartViewToggle, removeCartItemsOnSignOut }) => {
     )
 }
 
-const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
-    currentUser: currentUser,
-    cartViewToggle: hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    cartViewToggle: selectCartHidden
 })
 
 
