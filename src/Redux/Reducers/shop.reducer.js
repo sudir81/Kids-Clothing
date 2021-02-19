@@ -1,6 +1,5 @@
 const initialState = {
-    shopData: [
-        {
+    hats: {
         id: 1,
         title: "Hats",
         routeName: "hats",
@@ -60,8 +59,8 @@ const initialState = {
             price: 16
             }
         ]
-        },
-        {
+    },
+    sneakers: {
         id: 2,
         title: "Sneakers",
         routeName: "sneakers",
@@ -115,8 +114,8 @@ const initialState = {
             price: 200
             }
         ]
-        },
-        {
+    },
+    jackets: {
         id: 3,
         title: "Jackets",
         routeName: "jackets",
@@ -152,8 +151,8 @@ const initialState = {
             price: 185
             }
         ]
-        },
-        {
+    },
+    girls: {
         id: 4,
         title: "Girls",
         routeName: "girls",
@@ -201,8 +200,8 @@ const initialState = {
             price: 20
             }
         ]
-        },
-        {
+    },
+    boys: {
         id: 5,
         title: "Boys",
         routeName: "boys",
@@ -244,11 +243,10 @@ const initialState = {
             price: 25
             }
         ]
-        }
-    ]
+    }
 }
 
-  const shopRedcer = ( state= initialState, action) => {
+  const shopRedcer = ( state = initialState, action) => {
       switch (action.type) {
           default:
               return state;
