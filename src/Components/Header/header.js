@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
@@ -10,7 +9,7 @@ import { removeCartItemsOnSignOut } from '../../Redux/Actions/cart.action'
 import { ReactComponent as Logo} from '../../assets/images/crown.svg'
 import CartIcon from '../Cart-Icon/cart-icon'
 import CartView from '../Cart-Overlay/cartView'
-import './header.scss'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles'
 import { selectCurrentUser } from '../../Redux/Selectors/user.selector'
 import { selectCartHidden } from '../../Redux/Selectors/cart.selectors'
 
@@ -21,34 +20,34 @@ const Header = ({ currentUser, cartViewToggle, removeCartItemsOnSignOut }) => {
         // removeCartItemsOnSignOut()
     }
     return (
-        <div className="header">
-            <Link className="logo_container" to="/">
+        <HeaderContainer>
+            <LogoContainer to="/">
                 <Logo className="logo" />
-            </Link>
-            <div className="options">
-                <Link className="option" to="/shop">
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to="/shop">
                     SHOP
-                </Link>
-                <Link className="option" to="/contact">
+                </OptionLink>
+                <OptionLink to="/contact">
                     CONTACT
-                </Link>
+                </OptionLink>
                 {
                     currentUser ? (
-                        <div className="option" onClick={() => signOut()}>
+                        <OptionLink as="div" onClick={() => signOut()}>
                             SIGN OUT
-                        </div>
+                        </OptionLink>
                     ): (
-                        <Link className="option" to="/signin">
+                        <OptionLink to="/signin">
                             SIGN IN
-                        </Link>
+                        </OptionLink>
                     )
                 }
                 <CartIcon />
-            </div>
+            </OptionsContainer>
             {
                 cartViewToggle && (<CartView />)
             }
-        </div>
+        </HeaderContainer>
     )
 }
 
